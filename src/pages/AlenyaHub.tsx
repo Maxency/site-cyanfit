@@ -2,7 +2,7 @@ import React from 'react';
 import { Code2, Dumbbell, ArrowRight, Sparkles, Github, Linkedin, Mail, Instagram, Youtube } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import alenyaLogo from 'figma:asset/95a19947732569c7fd04fd408c1c6a014a54e6bf.png';
+import alenyaLogo from '../assets/95a19947732569c7fd04fd408c1c6a014a54e6bf.png'
 
 export function AlenyaHub() {
   return (
@@ -50,7 +50,10 @@ export function AlenyaHub() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center gap-2">
+            <button
+              onClick={() => document.getElementById('produtos')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center gap-2"
+            >
               Ver Produtos
               <ArrowRight className="w-5 h-5" />
             </button>
@@ -85,7 +88,7 @@ export function AlenyaHub() {
       </section>
 
       {/* Products Section */}
-      <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
+      <section id="produtos" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-5xl font-bold text-white mb-4">
