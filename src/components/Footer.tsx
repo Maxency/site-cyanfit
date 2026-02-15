@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dumbbell, Instagram, Facebook, Youtube, Linkedin, Mail } from 'lucide-react';
+import { Dumbbell, Mail } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -25,16 +25,7 @@ export function Footer() {
             </p>
             <div className="flex gap-3 sm:gap-4">
               <button className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gray-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
-                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-              <button className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gray-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
-                <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-              <button className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gray-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
-                <Youtube className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-              <button className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gray-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
-                <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
