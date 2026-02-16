@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Code2, Dumbbell, ArrowRight, Sparkles, Github, Linkedin, Mail, Instagram, Youtube } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import alenyaLogo from '../assets/95a19947732569c7fd04fd408c1c6a014a54e6bf.png'
+import ContactForm from '../components/ContactForm';
 
 export function AlenyaHub() {
+  const [open, setOpen] = useState(false);
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950">
       {/* Navigation */}
@@ -21,7 +23,10 @@ export function AlenyaHub() {
             </div>
             
             <div className="flex items-center gap-4">
-              <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all">
+              <button
+                onClick={() => setOpen(true)}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all"
+              >
                 Contato
               </button>
             </div>
@@ -57,7 +62,10 @@ export function AlenyaHub() {
               Ver Produtos
               <ArrowRight className="w-5 h-5" />
             </button>
-            <button className="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-all flex items-center gap-2">
+            <button
+              onClick={() => setOpen(true)}
+              className="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-all flex items-center gap-2"
+            >
               <Mail className="w-5 h-5" />
               Fale Conosco
             </button>
@@ -200,6 +208,25 @@ export function AlenyaHub() {
           </div>
         </div>
       </section>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ zIndex: 1000 }}
+          onClick={() => setOpen(false)}
+        >
+          {/* Overlay escuro com opacidade para destacar o modal */}
+          <div className="absolute inset-0" style={{ backgroundColor: 'rgba(2, 6, 23, 0.85)' }} />
+          <div className="relative z-10 w-full max-w-2xl p-4 mx-4" onClick={(e) => e.stopPropagation()}>
+            <div
+              className="border border-white/10 rounded-2xl shadow-2xl p-6 sm:p-8"
+              style={{ backgroundColor: '#020617' }}
+            >
+              <ContactForm onClose={() => setOpen(false)} />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-white/10">
