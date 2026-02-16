@@ -22,14 +22,7 @@ export function AlenyaHub() {
               </span>
             </div>
             
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => setOpen(true)}
-                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all"
-              >
-                Contato
-              </button>
-            </div>
+            <div />
           </div>
         </div>
       </nav>

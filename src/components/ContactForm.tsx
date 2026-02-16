@@ -1,4 +1,5 @@
 ﻿import React, { useEffect, useRef, useState } from 'react';
+import { X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { focusRing } from './ui/utils';
 
@@ -47,14 +48,30 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
       });
 
       if (!response.ok) {
-        throw new Error('Falha ao enviar mensagem');
+        let apiMessage = '';
+        try {
+          const payload = (await response.json()) as { message?: string };
+          apiMessage = payload.message ?? '';
+        } catch {
+          // ignore parse errors and keep fallback message
+        }
+
+        if (response.status === 404) {
+          throw new Error('API /api/contact nao encontrada. Em dev local, rode com vercel dev.');
+        }
+
+        throw new Error(apiMessage || `Falha ao enviar mensagem (status ${response.status}).`);
       }
 
       setSent(true);
       reset();
     } catch (error) {
       console.error(error);
-      setSubmitError('Nao foi possivel enviar. Tente novamente em alguns minutos.');
+      if (error instanceof Error) {
+        setSubmitError(error.message);
+      } else {
+        setSubmitError('Nao foi possivel enviar. Tente novamente em alguns minutos.');
+      }
     }
   }
 
@@ -76,7 +93,7 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
             className="text-gray-400 hover:text-white hover:bg-white/10 rounded-full p-2 transition-colors flex-shrink-0"
             aria-label="Fechar formulario"
           >
-            x
+            <X className="h-4 w-4" aria-hidden="true" />
           </button>
         )}
       </div>
@@ -175,4 +192,3 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
 }
 
 export default ContactForm;
-

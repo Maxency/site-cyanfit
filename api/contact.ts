@@ -76,6 +76,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json({ message: 'Mensagem enviada com sucesso.' });
   } catch (error) {
     console.error('Error sending contact email:', error);
-    return res.status(500).json({ message: 'Erro ao enviar mensagem.' });
+    const isProd = process.env.NODE_ENV === 'production';
+    const errorMessage =
+      error instanceof Error ? error.message : 'Erro desconhecido ao enviar mensagem.';
+
+    return res.status(500).json({
+      message: isProd ? 'Erro ao enviar mensagem.' : `Erro ao enviar mensagem. Detalhe: ${errorMessage}`,
+    });
   }
 }
