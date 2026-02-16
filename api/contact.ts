@@ -1,5 +1,16 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-const nodemailer = require('nodemailer') as typeof import('nodemailer');
+const nodemailer = require('nodemailer');
+
+type VercelRequest = {
+  method?: string;
+  body?: unknown;
+};
+
+type VercelResponse = {
+  setHeader: (name: string, value: string) => void;
+  status: (code: number) => {
+    json: (payload: unknown) => void;
+  };
+};
 
 type ContactBody = {
   nome?: unknown;
