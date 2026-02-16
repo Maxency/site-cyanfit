@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import nodemailer from 'nodemailer';
+const nodemailer = require('nodemailer') as typeof import('nodemailer');
 
 type ContactBody = {
   nome?: unknown;
@@ -22,7 +22,7 @@ function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+module.exports = async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ message: 'Metodo nao permitido. Use POST.' });
@@ -84,4 +84,4 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       message: isProd ? 'Erro ao enviar mensagem.' : `Erro ao enviar mensagem. Detalhe: ${errorMessage}`,
     });
   }
-}
+};
